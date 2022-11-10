@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-- Clone this project: `$ git clone git@github.com:bsmith89/fmt-mgen.git fmt-mgen`
+- Clone this project: `$ git clone --recurse-submodules git@github.com:bsmith89/fmt-mgen.git fmt-mgen`
 - `$ cd fmt-mgen`
 - Install snakemake, activate conda environment with snakemake, etc.
 - Edit `env_local` to activate this environment
