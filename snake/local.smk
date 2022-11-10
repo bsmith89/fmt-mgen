@@ -1,7 +1,8 @@
 rule link_fmt_studies_raw_data:
-    output: 'raw/mgen'
+    output:
+        "raw/mgen",
     params:
-        input='/pollard/data/metagenomes/fmt_studies'
+        input="/pollard/data/metagenomes/fmt_studies",
     shell:
         "ln -s {params.input} {output}"
 
@@ -50,7 +51,10 @@ rule link_local_GRCh38_index:
         "raw/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.rev.1.bt2",
         "raw/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.rev.2.bt2",
     input:
-        [f"/pollard/data/vertebrate_genomes/human/hg38/hg38/human_hg38.{stem}.bt2" for stem in ['1', '2', '3', '4', 'rev.1', 'rev.2']]
+        [
+            f"/pollard/data/vertebrate_genomes/human/hg38/hg38/human_hg38.{stem}.bt2"
+            for stem in ["1", "2", "3", "4", "rev.1", "rev.2"]
+        ],
     shell:
         """
         ln -s {input[0]} {output[0]}
@@ -60,5 +64,6 @@ rule link_local_GRCh38_index:
         ln -s {input[4]} {output[4]}
         ln -s {input[5]} {output[5]}
         """
+
 
 ruleorder: link_local_GRCh38_index > unpack_GRCh38_index
