@@ -70,6 +70,9 @@ ruleorder: link_local_GRCh38_index > unpack_GRCh38_index
 
 
 rule link_gtpro_db:
-    output: 'ref/gtpro/{stem}'
-    input: '/pollard/data/gt-pro-db/{stem}'
-    shell: alias_recipe_norelative
+    output:
+        "ref/gtpro/{stem}",
+    input:
+        "/pollard/data/gt-pro-db/{stem}",
+    shell:
+        alias_recipe_norelative
