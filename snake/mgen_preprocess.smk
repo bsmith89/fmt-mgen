@@ -63,7 +63,7 @@ ruleorder: alias_GRCh38_index_file > bowtie_index_build
 
 rule alias_raw_read_r1:
     output:
-        "data/{mgen}.r1.fq.gz",
+        "sdata/{mgen}.r1.fq.gz",
     input:
         lambda w: config["mgen"]["r1"][w.mgen],
     shell:
@@ -76,7 +76,7 @@ localrules:
 
 rule alias_raw_read_r2:
     output:
-        "data/{mgen}.r2.fq.gz",
+        "sdata/{mgen}.r2.fq.gz",
     input:
         lambda w: config["mgen"]["r2"][w.mgen],
     shell:
@@ -91,37 +91,15 @@ localrules:
 # {{{2 Metagenomic reads
 
 
-rule qc_raw_reads:
+rule qc_reads:
     output:
-        directory("data/{group}.a.fastqc.d"),
+        directory("{stemA}/{group}.a.r{stemB}.fastqc.d"),
     input:
         r1=lambda w: [
-            f"sdata/{mgen}.r1.fq.gz" for mgen in config["mgen_group"][w.group]
+            f"{stemA}/{mgen}.r1{stemB}.fq.gz" for mgen in config["mgen_group"][w.group]
         ],
         r2=lambda w: [
-            f"sdata/{mgen}.r2.fq.gz" for mgen in config["mgen_group"][w.group]
-        ],
-    container:
-        config["container"]["toolz"]
-    threads: config["MAX_THREADS"]
-    shell:
-        dd(
-            """
-        mkdir -p {output}
-        fastqc -t {threads} -o {output} {input}
-        """
-        )
-
-
-rule qc_processed_reads:
-    output:
-        directory("data/{group}.a.proc.fastqc.d"),
-    input:
-        r1=lambda w: [
-            f"data/{mgen}.r1.proc.fq.gz" for mgen in config["mgen_group"][w.group]
-        ],
-        r2=lambda w: [
-            f"data/{mgen}.r2.proc.fq.gz" for mgen in config["mgen_group"][w.group]
+            f"{stemA}/{mgen}.r2{stemB}.fq.gz" for mgen in config["mgen_group"][w.group]
         ],
     container:
         config["container"]["toolz"]

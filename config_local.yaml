@@ -3,3 +3,6 @@ local_data_dirs:
   - data
   - ref
 local_data_root: '/pollard/scratch/bsmith/fmt-mgen'
+secure_local_data_dirs:
+  - sdata
+secure_local_data_root: '/pollard/scratch/bsmith/fmt-mgen'
