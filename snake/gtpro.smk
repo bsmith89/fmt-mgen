@@ -202,14 +202,6 @@ rule estimate_all_species_horizontal_coverage:
         "{input.script} {input.snps} {input.r} {output}"
 
 
-# TODO: Test whether this rule will work without the '.gtpro.' anchor point in the middle
-# That's there so that rules that have more stem than '.a.{stem}.gtpro.' have a clear
-# dividing line between _this_ stem and the later stem.
-# That's necessary because a 'stem=' parameter has to be passed to
-# checkpoint_select_species_with_greater_max_coverage_gtpro(...)
-# in order for it to pull up the correct file.
-# Perhaps there's a way to instead pass the input-filename this function
-# and have it extract the correct wildcards... :-/
 checkpoint select_species_with_greater_max_coverage_gtpro:
     output:
         "data/group/{group}/a.{stem}.gtpro.horizontal_coverage.filt-h{cvrg_thresh}-n{num_samples}.list",
