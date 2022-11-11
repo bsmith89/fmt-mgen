@@ -7,6 +7,7 @@
 - Install snakemake, activate conda environment with snakemake, etc.
 - Edit `env_local` to activate this environment
 - `$ source env`
+- TODO: Fix profile to work with each users home directory.
 - `$ smake initialize_project_config`
 - Create and link scratch directories, e.g.
     - `$ ln -s /pollard/scratch/$USER/fmt-mgen/raw raw`
@@ -15,7 +16,7 @@
     - `$ ln -s /pollard/scratch/$USER/fmt-mgen/sdata sdata`
 - Link raw data and reference databases, e.g.
     - `$ ln -s /pollard/data/vertebrate_genomes/human/hg38/hg38/human_hg38.1.bt2 ref/GRCh38.1.bt2`
-    - `$ ln -s /pollard/data/gt-pro-db /ref/gtpro`
+    - `$ ln -s /pollard/data/gt-pro-db ref/gtpro`
     - `$ ln -s /pollard/data/metagenomes/fmt_studies/ raw/mgen`
 - (See <https://github.com/bsmith89/fmt-mgen/blob/pollard-local/snake/local.smk> for how I automate the above.)
 - If everything above has gone well, then run `$ smake -j20 data/sp-102506.test.a.r.proc.gtpro.tsv.bz2`
