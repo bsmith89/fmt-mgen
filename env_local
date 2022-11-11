@@ -1,1 +1,3 @@
-conda activate snakemake7.1
+conda activate snakemake
+export SNAKEMAKE_CONDA_PREFIX='/pollard/home/bsmith/.snakemake/conda'
+export SNAKEMAKE_SINGULARITY_PREFIX='/pollard/home/bsmith/.snakemake/singularity'
